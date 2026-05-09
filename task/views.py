@@ -51,3 +51,10 @@ def task_delete(request, task_id):
     task = get_list_or_404(Task, id=task_id, user=request.user)
     task.delete()
     return redirect('')
+
+
+def task_mark_completed(request, task_id):
+    task = get_list_or_404(Task, id=task_id, user=request.user)
+    task.is_completed = True
+    task.save()
+    return redirect('')
