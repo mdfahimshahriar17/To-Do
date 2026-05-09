@@ -41,7 +41,7 @@ def task_create(request):
     return render(request, '', {'form' : form})
 
 @login_required
-def task_details(request, task_id):
+def task_detail(request, task_id):
     task = get_list_or_404(Task, id=task_id, user=request.user)
     return render(request, '', {'task' : task})
 
