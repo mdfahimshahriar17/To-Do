@@ -25,3 +25,29 @@ def task_list(request):
         'status_filter' : status_filter,
         'category_filter' : category_filter,
     })
+
+def task_create(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
+            return redirect('')
+    
+    else:
+        form = TaskForm()
+
+    return render(request, '', {'form' : form})
+
+@login_required
+def task_details(request, task_id):
+    task = get_list_or_404(Task, id=task_id, user=request.user)
+    return render(request, '', {'task' : task})
+
+
+@login_required
+def task_delete(request, task_id):
+    task = get_list_or_404(Task, id=task_id, user=request.user)
+    task.delete()
+    return redirect('')
