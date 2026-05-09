@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
-
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 @login_required
 def task_list(request):
     status_filter = request.GET.get('status', 'all')
@@ -53,8 +53,26 @@ def task_delete(request, task_id):
     return redirect('')
 
 
+@login_required
 def task_mark_completed(request, task_id):
     task = get_list_or_404(Task, id=task_id, user=request.user)
     task.is_completed = True
     task.save()
     return redirect('')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username = username, password = password)
+            login(request, user)
+            return redirect('')
+        
+    else:
+        form = UserCreationForm
+    
+    return render(request, '', {'form' : form})
+
