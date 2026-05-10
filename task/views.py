@@ -19,7 +19,7 @@ def task_list(request):
     completed_tasks = tasks.filter(is_completed = True)
     pending_tasks = tasks.filter(is_completed = False)
 
-    return render(request, '', {
+    return render(request, 'task_list.html', {
         'completed_tasks' : completed_tasks,
         'pending_tasks' : pending_tasks,
         'status_filter' : status_filter,
