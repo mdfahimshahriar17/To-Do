@@ -43,9 +43,8 @@
             <!--Buttons for task action-->
             <div class="d-flex justify-content-between">
                 <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Task List</a>
-                <a href="{% url 'task_delete' task.id %}" clas="btn btn-danger">Delete</a>
-                {% if not task.is_completed %}
-                    <a href="{% url 'task_mark_completed' task.id %}" clas="btn btn-success">Mark as completed</a>
+                <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>                {% if not task.is_completed %}
+                    <a href="{% url 'task_mark_completed' task.id %}" class="btn btn-success">Mark as completed</a>
                 {% endif %}
             </div>
         </div>        

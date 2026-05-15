@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% block title %}Task List{% endblock title %}
 {% block content %}
     <h2 class="mb-4 text-primary">Task List</h2>
     <!-- Filter Form with icon -->
@@ -39,16 +38,19 @@
                 <div class="card mb-4 shadow-sm border-success">
                     <div class="card-body">
                         <h5 class="card-title">{{ task.title }}</h5>
-                        <p class="card-text">{{ task.description|truncatewords:l5 }}</p>
+                        <p class="card-text">{{ task.description|truncatewords:15 }}</p>
                         <span class="badge bg-success mb-2">Completed</span>
-                        <p class=card-text>
-                            <strong>Category:</strong> <span class="badge bg.secondary">{{ task.get_category_display }}</span><br>
+                        <p class="card-text">
+                            <strong<strong>Category:</strong>
+                                    <span class="badge bg-secondary">
+                                        {{ task.get_category_display }}
+                                    </span><br>
                             <strong>Due:</strong> {{ task.due_date }} at {{ task.due_time }}
                                                 
                         </p>
                         <div class="d-flex justify-content-between">
                             <a href="{% url 'task_detail' task.id %}" class="btn btn-info btn-sm">View</a>
-                            <a href="{% url 'task_delete' task.id %}" clas="btn btn-danger btn-sm">Delete</a>
+                            <a href="{% url 'task_delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -64,17 +66,17 @@
                 <div class="card mb-4 shadow-sm border-warning">
                     <div class="card-body">
                         <h5 class="card-title">{{ task.title }}</h5>
-                        <p class="card-text">{{ task.description|truncatewords:l5 }}</p>
+                        <p class="card-text">{{ task.description|truncatewords:15 }}</p>
                         <span class="badge bg-success mb-2">Pending</span>
-                        <p class=card-text>
-                            <strong>Category:</strong> <span class="badge bg.secondary">{{ task.get_category_display }}</span><br>
+                        <p class="card-text">
+                            <strong>Category:</strong> <span class="badge bg-secondary">{{ task.get_category_display }}</span><br>
                             <strong>Due:</strong> {{ task.due_date }} at {{ task.due_time }}
                                                 
                         </p>
                         <div class="d-flex justify-content-between">
                             <a href="{% url 'task_detail' task.id %}" class="btn btn-info btn-sm">View</a>
-                            <a href="{% url 'task_delete' task.id %}" clas="btn btn-danger btn-sm">Delete</a>
-                            <a href="{% url 'task_mark_completed' task.id %}" clas="btn btn-success btn-sm">Mark as completed</a>
+                            <a href="{% url 'task_delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{% url 'task_mark_completed' task.id %}" class="btn btn-success btn-sm">Mark as completed</a>
                         </div>
                     </div>
                 </div>
@@ -82,3 +84,4 @@
             </div>
         </div>
     </div>
+{% endblock %}

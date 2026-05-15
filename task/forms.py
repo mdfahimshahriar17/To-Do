@@ -6,3 +6,7 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         exclude = ['user']
+        widgets = {
+            'due_date' : forms.DateInput(attrs={'type' : 'date', 'class' : 'form-control'}),
+            'due_time' : forms.TimeInput(attrs={'type' : 'time', 'class' : 'form-control'}),
+        }
